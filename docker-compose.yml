@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    # El workflow inyecta IMAGE en el entorno remoto antes de levantar los contenedores.
+    # Usa la variable ${IMAGE} en tu servidor (export IMAGE=...) o en un .env
+    image: "${IMAGE:-ghcr.io/your-org/your-repo:latest}"
+    restart: always
+    ports:
+      - '80:3000' # cambia 3000 por el puerto que exponga tu app
+    environment:
+      - NODE_ENV=production
+    # Si necesitas montajes locales para persistencia ajusta aquí:
+    # volumes:
+    #   - ./data:/data
